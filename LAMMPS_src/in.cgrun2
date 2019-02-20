@@ -1,0 +1,50 @@
+#### LAMMPS input file for CG simulations #########################
+#### MethylCellulose - Huang et.al, Macromolecules, 2016,49,1490###
+#### Version : Nov-29-2017 ########################################
+#Stage2: Equilibration
+
+log             log.single
+units           lj
+boundary        p p p
+atom_style      molecular
+read_restart    restart1_melt2
+pair_modify     shift yes mix geometric
+include         in.cgpair_MC
+
+#--------------------Initialize-------------------------------------#
+
+thermo_style    custom step temp press
+thermo          25000
+neighbor        2.0 bin
+neigh_modify    every 1 delay 0 check yes
+
+#---------------Main Run begins here-------------------------------#
+
+# Dissipate excess energy using Langevin
+
+timestep 0.0005
+
+fix 1 all langevin 1.0 1.0 10 234722 zero yes
+fix 2 all nve
+dump 1 all custom 10000 dump_stage2.lammpstrj id type xu yu zu
+
+restart 50000 restart2_melt1 restart2_melt2
+restart 1000000 archival_restart.*
+run 2000000
+
+unfix 1
+unfix 2
+
+# Now do a full NVT simulation to equilibrate
+
+timestep 0.0005
+fix 1 all nvt temp 1.0 1.0 (100*dt) 
+fix 2 all momentum 1000 linear 1 1 1
+
+restart 50000 restart2_melt1 restart2_melt2
+run 2000000
+
+write_restart run3_melt.*
+write_data run3_melt.data
+
+

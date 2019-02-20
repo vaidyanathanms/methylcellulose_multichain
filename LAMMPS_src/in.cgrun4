@@ -1,0 +1,37 @@
+#### LAMMPS input file for CG simulations #########################
+#### MethylCellulose - Huang et.al, Macromolecules, 2016,49,1490###
+#### Version : Nov-29-2017 ########################################
+#Stage3: Production
+
+
+log             log.single
+units           lj
+boundary        p p p
+atom_style      molecular
+read_restart    restart3_melt2
+pair_style      lj96/cut 3.0
+pair_modify     shift yes mix geometric
+include         in.cgpair_MC
+
+#--------------------Output----------------------------------------#
+
+thermo_style    custom step temp press
+thermo          100000
+neighbor        2.0 bin
+neigh_modify    every 1 delay 0 check yes
+
+#---------------Main Run begins here-------------------------------#
+
+variable ts equal step
+timestep 0.0005
+fix 1 all nvt temp 1.0 1.0 100*dt 
+fix 2 all momentum 1000 linear 1 1 1
+dump 1 all custom 5000 dump_stage4_${ts}.lammpstrj id type xu yu zu
+
+restart 500000 restart3_melt1 restart3_melt2
+restart 1000000 archival_restart.*
+run 20000000
+
+write_restart run4_melt.*
+write_data run4_melt.data
+
