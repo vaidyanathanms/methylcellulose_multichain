@@ -1,0 +1,16 @@
+datafile
+MCdata_1000_1.80.lj
+trajectory_file
+dump_stage4_24000000.lammpstrj
+nframes
+1000
+skipfr
+0
+nchains
+1
+nwater
+0
+atomsperchain
+1000
+compute_rg
+10 1 1
