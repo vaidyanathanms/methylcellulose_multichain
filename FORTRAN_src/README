@@ -1,0 +1,28 @@
+All FORTRAN codes needed to generate initial configuration for LAMMPS, analyze trajectories
+
+To generate initial configurations
+
+lammps_inp.f90 - To generate single chain configurations
+Required files: lmp_params_var.f90 (change accordingly) and ran_numbers.f90
+Usage:
+ifort -qopenmp -r8 ran_numbers.f90 lmp_params_var.f90 lammps_inp.f90
+./a.out lj
+
+replicate_diff_geometry.f90 - To generate multi chain configurations
+Required files: ran_numbers.f90, inprep.txt
+Usage:
+ifort -r8 -qopenmp ran_numbers.f90 replicate_diff_geometry.f90
+./a.out inprep.txt
+
+create_infile.f90 - To generate the in.pair file for LAMMPS run
+Required files: infile_params.f90
+Usage
+ifort -r8 -qopenmp infile_params.f90 create_infile.f90
+./a.out
+
+Analysis files
+main.f90
+Required files: params.f90 anainp.txt ran_numbers.f90
+Usage
+ifort -r8 -qopenmp ran_numbers.f90 params.f90 main.f90
+./a.out anainp.txt
