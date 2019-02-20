@@ -4,6 +4,7 @@ in.cgrun1 -- Minimization (only for single chain) and nve/limit + nvt
 in.cgrun2 -- Small Langevin + Long NVT
 in.cgrun3 -- Long NVT-1
 in.cgrun4 -- Long NVT-2
+in.pair* -- pair coefficient file(s)
 
 The current version has a Nose-Hoover thermostat time constant of 100*dt for NVT simulations. 
 In the paper a stronger coupling of 1.0 is utilized.
