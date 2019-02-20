@@ -1,0 +1,6 @@
+All codes are compatible with M-2017b
+1) genplane.m -- To generate best fit plane
+2) kappa_ana.m -- To compute the eigenvalues and shape anisotropy factors (global and individual)
+Required files: pl_indkappa.m, pl_indeig.m, analyze_kappa.m, read_analyze_indeig.m
+3) plot_generic_kappa.m -- To create colormaps of shape anisotropy factors. 
+Use consolidate_eigendata.m prior to using this for each case
