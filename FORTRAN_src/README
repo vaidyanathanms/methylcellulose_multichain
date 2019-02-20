@@ -11,7 +11,7 @@ ifort -qopenmp -r8 ran_numbers.f90 lmp_params_var.f90 lammps_inp.f90
 replicate_diff_geometry.f90 - To generate multi chain configurations
 Required files: ran_numbers.f90, inprep.txt
 Usage:
-ifort -r8 -qopenmp ran_numbers.f90 replicate_diff_geometry.f90 
+ifort -r8 -qopenmp ran_numbers.f90 replicate_diff_geometry.f90
 ./a.out inprep.txt
 
 create_infile.f90 - To generate the in.pair file for LAMMPS run
@@ -26,4 +26,3 @@ Required files: params.f90 anainp.txt ran_numbers.f90
 Usage
 ifort -r8 -qopenmp ran_numbers.f90 params.f90 main.f90
 ./a.out anainp.txt
-
