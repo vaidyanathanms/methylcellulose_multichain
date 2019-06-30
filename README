@@ -1,4 +1,13 @@
-All codes are compatible with M-2017b
+All MATLAB/LAMMPS/FORTRAN/Python source code for the publication: 
+Simulating precursor steps for fibril formation in methylcellulose solutions (Physical Review Materials 3 (5), 055601)
+
+For bug fixes/more details, please contact vsethura@umn.edu
+
+Data repository: https://conservancy.umn.edu/handle/11299/202793
+Video repository: https://conservancy.umn.edu/handle/11299/202217
+
+
+MATLAB file details: All codes are compatible with M-2017b.
 1) genplane.m -- To generate best fit plane
 2) kappa_ana.m -- To compute the eigenvalues and shape anisotropy factors (global and individual)
 Required files: pl_indkappa.m, pl_indeig.m, analyze_kappa.m, read_analyze_indeig.m
